@@ -9,7 +9,7 @@
       </template>
 
     
-      <v-icon class="me-sm-8" max-width="40">mdi-dumbbell</v-icon>
+      <v-icon class="me-sm-8" max-width="60" >mdi-dumbbell</v-icon>
 
       <template v-if="$vuetify.display.mdAndUp">
         <v-btn
@@ -122,7 +122,7 @@
     <v-main>
       <v-toolbar color="surface" elevation="1" height="84">
         <template #title>
-          <h2 class="text-h4 font-weight-bold">Dashboard</h2>
+          <h2 class="text-h4 font-weight-bold">Dashboard - GymTracker</h2>
         </template>
       </v-toolbar>
 
