@@ -16,7 +16,7 @@
           v-for="(item, i) in items"
           :key="i"
           :active="i === 0"
-          class="me-2 text-none"
+          class="me-2 Roboto"
           slim
           v-bind="item"
         />
@@ -163,3 +163,15 @@
     },
   ]
 </script>
+<style>
+.DynamicFont {
+  font-family: 'DynamicFont', sans-serif;
+  
+}
+.ProRacing {
+  font-family: 'ProRacing';
+}
+.Roboto {
+  font-family: 'Roboto', sans-serif;
+}
+</style>
