@@ -14,7 +14,7 @@ A small web app to track workouts and create training plans.
 ## Installation
 
 ```bash
-git clone <your-repo-url>
-cd sport-gym-tracker
+git clone https://github.com/Lel543/GymTracker.git
+cd GymTracker
 npm install
 npm run dev
