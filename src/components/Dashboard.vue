@@ -10,23 +10,16 @@
 
       <v-icon class="me-sm-8" max-width="60">mdi-dumbbell</v-icon>
 
-      <!-- Navbar Items -->
       <template v-if="$vuetify.display.mdAndUp">
         <v-btn
           v-for="(item, i) in items"
           :key="i"
           class="me-2 nav-btn Roboto"
           slim
-          @mouseenter="glitchIn($event, item.text)"
-          @mouseleave="resetChars($event, item.text)"
+          @mouseenter="splitTextIn($event)"
+         
         >
-          <span
-            v-for="(char, j) in splitText(item.text)"
-            :key="j"
-            class="char"
-          >
-            {{ char }}
-          </span>
+          <span class="split-text">{{ item.text }}</span>
         </v-btn>
       </template>
 
@@ -39,83 +32,37 @@
 import { shallowRef } from "vue"
 import { gsap } from "gsap"
 
+import SplitText from "gsap/SplitText"
+gsap.registerPlugin(SplitText)
+
 const drawer = shallowRef(false)
 
 const items = [
   { text: "Dashboard" },
-  { text: "Users" },
-  { text: "Projects" },
-  { text: "Settings" },
-  { text: "Contact" },
+  { text: "Pläne" },
+  { text: "Training" },
+  { text: "Readme" },
 ]
 
-function splitText(text) {
-  return text.split("")
-}
 
-const glitchChars = "!@#$%^&*()_+=-<>?/\\|[]{}"
+function splitTextIn(event) {
+  const el = event.currentTarget.querySelector(".split-text")
 
-
-function glitchIn(event, originalText) {
-  const chars = event.currentTarget.querySelectorAll(".char")
-
-  chars.forEach((char, i) => {
-  
-    const randX = (Math.random() - 0.5) * 100
-    const randY = (Math.random() - 0.5) * 100
-    const randRot = (Math.random() - 0.5) * 180
-
-    gsap.fromTo(
-      char,
-      { 
-        opacity: 0,
-        x: randX,
-        y: randY,
-        rotate: randRot,
-        color: "#ff0055"
-      },
-      {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        rotate: 0,
-        color: "#000",
-        duration: 0.6,
-        delay: i * 0.05,
-        ease: "power4.out",
-        onStart: () => glitchChar(char, originalText[i]),
-      }
-    )
-  })
-}
-
-function resetChars(event, originalText) {
-  const chars = event.currentTarget.querySelectorAll(".char")
-  chars.forEach((char, i) => {
-    char.textContent = originalText[i]
-    gsap.to(char, {
-      opacity: 1,
-      x: 0,
+  const split = SplitText.create(el, { type: "chars" })
+  gsap.fromTo(
+    split.chars,
+    { y: 30, opacity: 0, rotate: -30 },
+    {
       y: 0,
+      opacity: 1,
       rotate: 0,
-      color: "#000",
-      duration: 0.3,
-    })
-  })
+      duration: 0.5,
+      stagger: 0.03,
+      ease: "back.out(2)",
+    }
+  )
 }
 
-function glitchChar(el, finalChar) {
-  let count = 0
-  const interval = setInterval(() => {
-    el.textContent =
-      glitchChars[Math.floor(Math.random() * glitchChars.length)]
-    count++
-    if (count > 3) {
-      clearInterval(interval)
-      el.textContent = finalChar
-    }
-  }, 50)
-}
 </script>
 
 <style scoped>
@@ -124,9 +71,10 @@ function glitchChar(el, finalChar) {
   text-transform: none;
   position: relative;
   overflow: hidden;
+  width: 240px;
 }
 
-.char {
+.split-text {
   display: inline-block;
   will-change: transform, opacity, color;
 }
