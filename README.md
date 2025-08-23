@@ -11,7 +11,7 @@ A small app to track workouts and create training plans.
 - Tech Stack: Frontend in Vue js, chart jsm gsap for animations and transistions, Backend: Java Spring Boot, DataBase: Postgres SQL
 - Side project by haiderer - personal use only
 
-## Installation
+## Installation - npm needed (works also with yarn package manager)
 
 ```bash
 git clone https://github.com/Lel543/GymTracker.git
