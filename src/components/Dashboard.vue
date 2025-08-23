@@ -17,8 +17,8 @@
           :key="i"
           class="me-2 nav-btn Roboto"
           slim
-          @mouseenter="animateIn($event)"
-          @mouseleave="resetChars($event)"
+          @mouseenter="glitchIn($event, item.text)"
+          @mouseleave="resetChars($event, item.text)"
         >
           <span
             v-for="(char, j) in splitText(item.text)"
@@ -31,51 +31,7 @@
       </template>
 
       <v-spacer />
-
-      <template #append>
-        <v-btn class="ms-1 opacity-60" icon="mdi-bell-outline" />
-
-        <v-btn class="ms-1" icon>
-          <v-avatar image="https://cdn.vuetifyjs.com/images/john.png" />
-
-          <v-menu activator="parent" origin="top">
-            <v-list>
-              <v-list-item link title="Update profile" />
-              <v-list-item link title="Sign out" />
-            </v-list>
-          </v-menu>
-        </v-btn>
-      </template>
     </v-app-bar>
-
-    <!-- Drawer für Mobile -->
-    <v-navigation-drawer
-      v-if="$vuetify.display.smAndDown"
-      v-model="drawer"
-      location="top"
-      temporary
-      width="355"
-    >
-      <!-- dein Drawer Code unverändert -->
-    </v-navigation-drawer>
-
-    <v-main>
-      <v-toolbar color="surface" elevation="1" height="84">
-        <template #title>
-          <h2 class="text-h4 font-weight-bold">Dashboard - GymTracker</h2>
-        </template>
-      </v-toolbar>
-
-      <div class="pa-4">
-        <v-sheet
-          border="dashed md"
-          color="surface-light"
-          height="500"
-          rounded="lg"
-          width="100%"
-        />
-      </div>
-    </v-main>
   </v-layout>
 </template>
 
@@ -93,43 +49,72 @@ const items = [
   { text: "Contact" },
 ]
 
-
 function splitText(text) {
   return text.split("")
 }
 
+const glitchChars = "!@#$%^&*()_+=-<>?/\\|[]{}"
 
-function animateIn(event) {
+
+function glitchIn(event, originalText) {
   const chars = event.currentTarget.querySelectorAll(".char")
 
-  gsap.fromTo(
-    chars,
-    { opacity: 0, y: 20, rotateX: 90, color: "#999" },
-    {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      color: "#000",
-      duration: 0.4,
-      ease: "back.out(2)",
-      stagger: {
-        each: 0.03,
-        from: "start",
+  chars.forEach((char, i) => {
+  
+    const randX = (Math.random() - 0.5) * 100
+    const randY = (Math.random() - 0.5) * 100
+    const randRot = (Math.random() - 0.5) * 180
+
+    gsap.fromTo(
+      char,
+      { 
+        opacity: 0,
+        x: randX,
+        y: randY,
+        rotate: randRot,
+        color: "#ff0055"
       },
-    }
-  )
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        rotate: 0,
+        color: "#000",
+        duration: 0.6,
+        delay: i * 0.05,
+        ease: "power4.out",
+        onStart: () => glitchChar(char, originalText[i]),
+      }
+    )
+  })
 }
 
-
-function resetChars(event) {
+function resetChars(event, originalText) {
   const chars = event.currentTarget.querySelectorAll(".char")
-  gsap.to(chars, {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    color: "#000",
-    duration: 0.2,
+  chars.forEach((char, i) => {
+    char.textContent = originalText[i]
+    gsap.to(char, {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      rotate: 0,
+      color: "#000",
+      duration: 0.3,
+    })
   })
+}
+
+function glitchChar(el, finalChar) {
+  let count = 0
+  const interval = setInterval(() => {
+    el.textContent =
+      glitchChars[Math.floor(Math.random() * glitchChars.length)]
+    count++
+    if (count > 3) {
+      clearInterval(interval)
+      el.textContent = finalChar
+    }
+  }, 50)
 }
 </script>
 
