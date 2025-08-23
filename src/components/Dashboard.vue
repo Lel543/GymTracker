@@ -84,15 +84,35 @@
       </v-toolbar>
 
       <v-sheet height="500" width="100%" rounded="lg">
-        <div class="d-flex justify-space-between align-center m-2">
-          <v-btn @click="prevWeek" :disabled="currentWeek === 0" color="primary" variant="elevated" elevation="8" size="large" rounded="xl" prepend-icon="mdi-chevron-left">
-            Vorherige Woche
-          </v-btn>
-          <span class="font-weight-bold text-primary text-h5">Woche {{ currentWeek + 1 }}</span>
-          <v-btn @click="nextWeek" :disabled="currentWeek === weeks.length - 1" color="primary" variant="elevated" elevation="8" size="large" rounded="xl" append-icon="mdi-chevron-right">
-            Nächste Woche
-          </v-btn>
-        </div>
+       <div class="d-flex justify-center align-center m-2">
+    <v-btn-group divided>
+      <v-btn
+        icon="mdi-chevron-left"
+        color="primary"
+        variant="tonal"
+        size="large"
+        :disabled="currentWeek === 0"
+        @click="prevWeek"
+        aria-label="Vorherige Woche"
+      />
+      <v-btn
+        variant="text"
+        class="font-weight-bold text-h5"
+        style="pointer-events: none; min-width: 120px;"
+      >
+        Woche {{ currentWeek + 1 }}
+      </v-btn>
+      <v-btn
+        icon="mdi-chevron-right"
+        color="primary"
+        variant="tonal"
+        size="large"
+        :disabled="currentWeek === weeks.length - 1"
+        @click="nextWeek"
+        aria-label="Nächste Woche"
+      />
+    </v-btn-group>
+  </div>
         <div class="chart-container">
           <canvas id="myBarChart"></canvas>
         </div>
@@ -109,7 +129,7 @@ import Chart from 'chart.js/auto'
 const weeks = [
   {
     labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-    data: [2, 1, 0, 3, 2, 1, 0]
+    data: [2, 1, 0, 0, 2, 1, 0]
   },
   {
     labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
@@ -117,7 +137,7 @@ const weeks = [
   },
   {
     labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-    data: [0, 1, 1, 2, 2, 3, 1]
+    data: [0, 1, 1, 2, 2, 1, 1]
   }
 ]
 const currentWeek = ref(0)
