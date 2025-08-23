@@ -7,7 +7,7 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import "../src/assets/styles/fonts.css";
 import "@mdi/font/css/materialdesignicons.css";
-
+import "../src/styles/core.css";
 const vuetify = createVuetify({
   components,
   directives,
@@ -17,12 +17,12 @@ const vuetify = createVuetify({
       myTheme: {
         dark: false,
         colors: {
-          primary: "#222831", // Anthrazit
-          secondary: "#76ABAE", // Türkis
-          accent: "#EEEEEE", // Helles Grau
-          success: "#4CAF50", // Grün
-          error: "#FF5252", // Rot
-          info: "#393E46", // Dunkleres Grau
+          primary: "#222831",
+          secondary: "#76ABAE",
+          accent: "#EEEEEE",
+          success: "#4CAF50",
+          error: "#FF5252",
+          info: "#393E46",
         },
       },
     },

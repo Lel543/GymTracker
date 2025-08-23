@@ -170,7 +170,7 @@ const weeks = [
   },
   {
     labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
-    data: [1, 2, 2, 1, 0, 2, 3],
+    data: [1, 2, 2, 1, 0, 2, 0],
   },
   {
     labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
@@ -249,109 +249,7 @@ watch(currentWeek, renderChart);
 
 const drawer = shallowRef(false);
 
-const items = [
-  { text: "Dashboard" },
-  { text: "Users" },
-  { text: "Projects" },
-  { text: "Settings" },
-  { text: "Contact" },
-];
+const items = [{ text: "Dashboard" }, { text: "Users" }, { text: "Projects" }];
 </script>
 
-<style>
-.DynamicFont {
-  font-family: "DynamicFont", sans-serif;
-}
-.ProRacing {
-  font-family: "ProRacing";
-}
-.Roboto {
-  font-family: "Roboto", sans-serif;
-}
-.Anton {
-  font-family: "Anton";
-  font-style: italic;
-  line-height: 1.2;
-  letter-spacing: 2px;
-  font-size: 3rem;
-}
-.chart-container {
-  position: relative;
-  height: 40vh;
-  width: 90vw;
-  margin: 0 auto;
-}
-
-.fancy-heading-wrapper {
-  position: relative;
-  width: 100%;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fancy-heading {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  font-size: 3.5em;
-  color: transparent;
-  text-transform: uppercase;
-  font-family: "Anton", "Meta", sans-serif;
-  letter-spacing: 0.05em;
-  text-align: center;
-  user-select: none;
-  line-height: 1.1;
-}
-
-.fancy-heading span:nth-child(1) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #222831;
-  transition: 0.5s;
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-  overflow: hidden;
-  width: 100%;
-}
-.fancy-heading:hover span:nth-child(1) {
-  transform: translateY(-18px);
-}
-
-.fancy-heading span:nth-child(2) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #222831;
-  transition: 0.5s;
-  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-  overflow: hidden;
-  width: 100%;
-}
-.fancy-heading:hover span:nth-child(2) {
-  transform: translateY(18px);
-}
-
-.fancy-heading span:nth-child(3) {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%) scaleY(0);
-  width: 91%;
-  color: #222831;
-  background: #76abae;
-  font-size: 0.25em;
-  font-weight: 500;
-  letter-spacing: 0.7em;
-  text-align: center;
-  padding-left: 20px;
-  margin-left: 5px;
-  border-radius: 8px;
-  transition: 0.5s;
-  z-index: 2;
-}
-.fancy-heading:hover span:nth-child(3) {
-  transform: translateY(-50%) scaleY(1);
-}
-</style>
+<style></style>
