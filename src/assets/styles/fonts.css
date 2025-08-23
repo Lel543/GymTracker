@@ -1,13 +1,18 @@
 @font-face {
-  font-family: 'DynamicFont';
-  src: url('../fonts/Sprintura.otf') format('opentype');
+  font-family: "DynamicFont";
+  src: url("../fonts/Sprintura.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ProRacing';
-  src: url('../fonts/ProRacing.otf') format('opentype');
+  font-family: "ProRacing";
+  src: url("../fonts/ProRacing.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url("../fonts/Anton-Regular.ttf") format("trueType");
 }
