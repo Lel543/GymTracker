@@ -6,10 +6,10 @@ A small web app to track workouts and create training plans.
 
 - Track workouts
 - Create training plans
-- Show progress with Chart.js
-- Database via Raspberry Pi
-- Built with Vue.js + TypeScript (Volar)
-- Side project by Paul Hadierer
+- Show progress (Weight, workout performance, workout activity, calory tracker)
+- Database with Raspberry Pi
+- Tech Stack: Frontend in Vue js, chart jsm gsap for animations and transistions, Backend: Java Spring Boot, DataBase: Postgres SQL
+- Side project by haiderer - personal use only
 
 ## Installation
 
