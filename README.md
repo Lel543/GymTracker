@@ -1,6 +1,6 @@
 # Gym Tracker
 
-A small web app to track workouts and create training plans.
+A small app to track workouts and create training plans.
 
 ## Features
 
